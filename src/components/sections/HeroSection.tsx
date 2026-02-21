@@ -35,8 +35,8 @@ export default function HeroSection() {
               transition={{ duration: 0.4 }}
               className={clsx(
                 "w-fit rounded-full px-3 py-1",
-                "bg-labotur-laranja/20 text-labotur-laranja",
-                "text-xs font-semibold uppercase tracking-widest",
+                "bg-labotur-laranja text-white",
+                "text-xs font-semibold uppercase tracking-widest"
               )}
             >
               Fundada em 1992 · Primeira EJ de Turismo do Brasil

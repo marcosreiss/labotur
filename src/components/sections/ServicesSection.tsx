@@ -53,7 +53,8 @@ function chunkServices<T>(items: T[], size: number) {
 }
 
 export default function ServicesSection() {
-  const serviceRows = chunkServices(services, 3)
+  const lgRows = chunkServices(services, 3) // desktop: 3 por linha
+  const smRows = chunkServices(services, 2) // tablet: 2 por linha
 
   return (
     <SectionWrapper id="servicos">
@@ -73,19 +74,31 @@ export default function ServicesSection() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <div className="flex flex-col gap-4">
-          {serviceRows.map((row, rowIndex) => {
-            const isLastRow = rowIndex === serviceRows.length - 1
-            const lgCols = isLastRow ? row.length : 3
+
+        {/* Mobile: 1 coluna */}
+        <div className="flex flex-col gap-4 sm:hidden">
+          {services.map((service) => (
+            <ServiceCard
+              key={service.title}
+              description={service.description}
+              icon={service.icon}
+              title={service.title}
+            />
+          ))}
+        </div>
+
+        {/* Tablet: 2 colunas por linha — órfão ocupa linha inteira */}
+        <div className="hidden flex-col gap-4 sm:flex lg:hidden">
+          {smRows.map((row, rowIndex) => {
+            const isLastRow = rowIndex === smRows.length - 1
+            const isOrphan = isLastRow && row.length === 1
 
             return (
               <ul
-                key={`services-row-${row.length}-${rowIndex}`}
+                key={`sm-${row[0].title}`}
                 className={clsx(
-                  "grid grid-cols-1 gap-4 sm:grid-cols-2",
-                  lgCols === 1 && "lg:grid-cols-1",
-                  lgCols === 2 && "lg:grid-cols-2",
-                  lgCols === 3 && "lg:grid-cols-3",
+                  "grid gap-4",
+                  isOrphan ? "grid-cols-1" : "grid-cols-2"
                 )}
               >
                 {row.map((service) => (
@@ -101,6 +114,37 @@ export default function ServicesSection() {
             )
           })}
         </div>
+
+        {/* Desktop: 3 colunas por linha — órfãos ocupam largura proporcional */}
+        <div className="hidden flex-col gap-4 lg:flex">
+          {lgRows.map((row, rowIndex) => {
+            const isLastRow = rowIndex === lgRows.length - 1
+            const cols = isLastRow ? row.length : 3
+
+            return (
+              <ul
+                key={`lg-${row[0].title}`}
+                className={clsx(
+                  "grid gap-4",
+                  cols === 1 && "grid-cols-1",
+                  cols === 2 && "grid-cols-2",
+                  cols === 3 && "grid-cols-3",
+                )}
+              >
+                {row.map((service) => (
+                  <li key={service.title}>
+                    <ServiceCard
+                      description={service.description}
+                      icon={service.icon}
+                      title={service.title}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )
+          })}
+        </div>
+
       </AnimatedSection>
     </SectionWrapper>
   )

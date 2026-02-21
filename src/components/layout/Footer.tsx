@@ -82,7 +82,7 @@ export default function Footer() {
             @ejlabotur
           </a>
           <p className="flex items-start gap-2 text-sm text-white/75">
-            <MapPin size={15} className="mt-0.5" />
+            <MapPin size={15} className="mt-0.5 shrink-0" />
             <span>
               Complexo Fábrica Santa Amélia
               <br />
@@ -94,14 +94,22 @@ export default function Footer() {
 
       <div
         className={clsx(
-          "relative z-10 mt-2 border-t border-white/12",
+          "relative flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-10 z-10 mt-2 border-t border-white/10",
           "px-6 py-4 text-center text-xs text-white/45",
         )}
       >
         <p>
           © {new Date().getFullYear()} Labotur — Empresa Júnior de Turismo UFMA
         </p>
-        <p className="mt-1">
+        <p className="">
+          <a
+            href="/privacidade"
+            className="text-white/45 underline underline-offset-4 transition-colors hover:text-white"
+          >
+            Política de Privacidade
+          </a>
+        </p>
+        <p className="">
           Feito por{" "}
           <a
             href="https://marcosreis.vercel.app/"
@@ -112,6 +120,7 @@ export default function Footer() {
             Marcos Reis
           </a>
         </p>
+
       </div>
     </footer>
   )

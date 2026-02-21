@@ -1,4 +1,5 @@
 // src/components/sections/ServicesSection.tsx
+import clsx from "clsx"
 import {
   BarChart2,
   CalendarDays,
@@ -43,7 +44,17 @@ const services = [
   },
 ]
 
+function chunkServices<T>(items: T[], size: number) {
+  const rows: T[][] = []
+  for (let i = 0; i < items.length; i += size) {
+    rows.push(items.slice(i, i + size))
+  }
+  return rows
+}
+
 export default function ServicesSection() {
+  const serviceRows = chunkServices(services, 3)
+
   return (
     <SectionWrapper id="servicos">
       <AnimatedSection>
@@ -54,7 +65,7 @@ export default function ServicesSection() {
           <h2 className="text-3xl font-bold text-neutral-900 md:text-4xl">
             Nossos serviços
           </h2>
-          <p className="max-w-xl text-base text-neutral-700">
+          <p className="max-w-2xl text-base text-neutral-700">
             Soluções baseadas em pesquisa acadêmica, supervisionadas por
             professores especialistas e a preços acessíveis.
           </p>
@@ -62,17 +73,34 @@ export default function ServicesSection() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <li key={service.title}>
-              <ServiceCard
-                description={service.description}
-                icon={service.icon}
-                title={service.title}
-              />
-            </li>
-          ))}
-        </ul>
+        <div className="flex flex-col gap-4">
+          {serviceRows.map((row, rowIndex) => {
+            const isLastRow = rowIndex === serviceRows.length - 1
+            const lgCols = isLastRow ? row.length : 3
+
+            return (
+              <ul
+                key={`services-row-${row.length}-${rowIndex}`}
+                className={clsx(
+                  "grid grid-cols-1 gap-4 sm:grid-cols-2",
+                  lgCols === 1 && "lg:grid-cols-1",
+                  lgCols === 2 && "lg:grid-cols-2",
+                  lgCols === 3 && "lg:grid-cols-3",
+                )}
+              >
+                {row.map((service) => (
+                  <li key={service.title}>
+                    <ServiceCard
+                      description={service.description}
+                      icon={service.icon}
+                      title={service.title}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )
+          })}
+        </div>
       </AnimatedSection>
     </SectionWrapper>
   )

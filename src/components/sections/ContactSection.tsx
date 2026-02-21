@@ -2,7 +2,7 @@
 "use client"
 
 import clsx from "clsx"
-import { Mail, MapPin } from "lucide-react"
+import { CircleCheckBig, Mail, MapPin } from "lucide-react"
 import { useState } from "react"
 
 import AnimatedSection from "@/components/ui/AnimatedSection"
@@ -39,8 +39,14 @@ export default function ContactSection() {
     setForm(initialState)
   }
 
+  const fieldClassName = clsx(
+    "rounded-xl border border-neutral-200/90 bg-white px-4 py-2.5",
+    "text-sm text-neutral-900 placeholder:text-neutral-700/50",
+    "outline-none transition-all focus:border-labotur-azul focus:ring-2 focus:ring-labotur-azul/15",
+  )
+
   return (
-    <div className="bg-neutral-100">
+    <div className="bg-transparent">
       <SectionWrapper id="contato">
         <AnimatedSection>
           <div className="mb-12 flex flex-col gap-3">
@@ -57,18 +63,19 @@ export default function ContactSection() {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-start">
-          {/* Formulário */}
-          <AnimatedSection delay={0.1}>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:items-start">
+          <AnimatedSection delay={0.1} className="md:col-span-7">
             {sent ? (
               <div
                 className={clsx(
-                  "flex flex-col gap-3 rounded-2xl p-8",
-                  "border border-labotur-azul/20 bg-labotur-azul/5",
-                  "text-center",
+                  "flex flex-col items-center gap-3 rounded-3xl p-8 md:p-10",
+                  "border border-labotur-azul/20 bg-white text-center",
+                  "shadow-[0_18px_40px_rgba(15,23,42,0.08)]",
                 )}
               >
-                <span className="text-2xl">✅</span>
+                <div className="flex size-12 items-center justify-center rounded-full bg-labotur-azul/10 text-labotur-azul">
+                  <CircleCheckBig size={22} />
+                </div>
                 <p className="font-semibold text-neutral-900">
                   Mensagem enviada!
                 </p>
@@ -78,13 +85,19 @@ export default function ContactSection() {
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="mt-2 text-sm font-medium text-labotur-azul underline"
+                  className="mt-2 text-sm font-medium text-labotur-azul underline underline-offset-4"
                 >
                   Enviar outra mensagem
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <form
+                onSubmit={handleSubmit}
+                className={clsx(
+                  "flex flex-col gap-4 rounded-3xl border border-neutral-200/90 bg-white p-6 md:p-8",
+                  "shadow-[0_18px_40px_rgba(15,23,42,0.08)]",
+                )}
+              >
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
                     <label
@@ -101,11 +114,7 @@ export default function ContactSection() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Seu nome"
-                      className={clsx(
-                        "rounded-lg border border-neutral-200 bg-white px-4 py-2.5",
-                        "text-sm text-neutral-900 placeholder:text-neutral-700/50",
-                        "outline-none focus:border-labotur-azul",
-                      )}
+                      className={fieldClassName}
                     />
                   </div>
 
@@ -123,11 +132,7 @@ export default function ContactSection() {
                       value={form.organization}
                       onChange={handleChange}
                       placeholder="Empresa ou prefeitura"
-                      className={clsx(
-                        "rounded-lg border border-neutral-200 bg-white px-4 py-2.5",
-                        "text-sm text-neutral-900 placeholder:text-neutral-700/50",
-                        "outline-none focus:border-labotur-azul",
-                      )}
+                      className={fieldClassName}
                     />
                   </div>
                 </div>
@@ -147,11 +152,7 @@ export default function ContactSection() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="seu@email.com"
-                    className={clsx(
-                      "rounded-lg border border-neutral-200 bg-white px-4 py-2.5",
-                      "text-sm text-neutral-900 placeholder:text-neutral-700/50",
-                      "outline-none focus:border-labotur-azul",
-                    )}
+                    className={fieldClassName}
                   />
                 </div>
 
@@ -170,21 +171,17 @@ export default function ContactSection() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Descreva brevemente sua demanda..."
-                    className={clsx(
-                      "resize-none rounded-lg border border-neutral-200 bg-white px-4 py-2.5",
-                      "text-sm text-neutral-900 placeholder:text-neutral-700/50",
-                      "outline-none focus:border-labotur-azul",
-                    )}
+                    className={clsx("resize-none", fieldClassName)}
                   />
                 </div>
 
                 <button
                   type="submit"
                   className={clsx(
-                    "rounded-lg px-6 py-3",
+                    "rounded-xl px-6 py-3",
                     "bg-labotur-laranja text-white",
                     "text-sm font-semibold",
-                    "transition-opacity hover:opacity-90",
+                    "shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90",
                   )}
                 >
                   Enviar mensagem
@@ -193,10 +190,14 @@ export default function ContactSection() {
             )}
           </AnimatedSection>
 
-          {/* Informações de contato */}
-          <AnimatedSection delay={0.2}>
-            <ul className="flex flex-col gap-6">
-              <li className="flex flex-col gap-1.5">
+          <AnimatedSection delay={0.2} className="md:col-span-5">
+            <ul
+              className={clsx(
+                "flex flex-col gap-4 rounded-3xl border border-neutral-200/90 bg-white p-6 md:p-7",
+                "shadow-[0_18px_40px_rgba(15,23,42,0.08)]",
+              )}
+            >
+              <li className="flex flex-col gap-2 rounded-2xl border border-neutral-200/90 bg-slate-50/60 p-4">
                 <div className="flex items-center gap-2 text-labotur-azul">
                   <Mail size={16} />
                   <span className="text-xs font-semibold uppercase tracking-widest">
@@ -211,7 +212,7 @@ export default function ContactSection() {
                 </a>
               </li>
 
-              <li className="flex flex-col gap-1.5">
+              <li className="flex flex-col gap-2 rounded-2xl border border-neutral-200/90 bg-slate-50/60 p-4">
                 <div className="flex items-center gap-2 text-labotur-azul">
                   <MapPin size={16} />
                   <span className="text-xs font-semibold uppercase tracking-widest">
@@ -242,7 +243,7 @@ export default function ContactSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={clsx(
-                    "w-fit rounded-lg px-4 py-2",
+                    "w-fit rounded-xl px-4 py-2",
                     "border border-labotur-azul text-labotur-azul",
                     "text-sm font-semibold",
                     "transition-colors hover:bg-labotur-azul hover:text-white",

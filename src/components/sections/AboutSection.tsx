@@ -30,10 +30,16 @@ const highlights = [
 export default function AboutSection() {
   return (
     <SectionWrapper id="sobre">
-      <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
-        {/* Texto principal */}
-        <AnimatedSection>
-          <div className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-stretch">
+        <AnimatedSection className="md:col-span-7">
+          <div
+            className={clsx(
+              "relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl p-7 md:p-9",
+              "border border-neutral-200/90 bg-white",
+              "shadow-[0_18px_40px_rgba(15,23,42,0.08)]",
+            )}
+          >
+            <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-labotur-azul/10 blur-3xl" />
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest text-labotur-laranja">
                 Quem somos
@@ -43,14 +49,14 @@ export default function AboutSection() {
               </h2>
             </div>
 
-            <p className="text-base leading-relaxed text-neutral-700">
+            <p className="relative text-base leading-relaxed text-neutral-700">
               A Labotur é a Empresa Júnior do curso de Turismo da Universidade
               Federal do Maranhão (UFMA). Somos uma associação sem fins
               lucrativos, formada e gerida por estudantes, que conecta a prática
               profissional às demandas reais do mercado.
             </p>
 
-            <p className="text-base leading-relaxed text-neutral-700">
+            <p className="relative text-base leading-relaxed text-neutral-700">
               Nosso objetivo é desenvolver o turismo local e regional enquanto
               formamos profissionais qualificados para o setor. Atuamos como um
               laboratório de lideranças para o turismo maranhense.
@@ -58,8 +64,8 @@ export default function AboutSection() {
 
             <div
               className={clsx(
-                "flex items-center gap-4 rounded-2xl p-5",
-                "border border-labotur-azul/20 bg-labotur-azul/5",
+                "relative mt-1 flex items-center gap-4 rounded-2xl p-5",
+                "border border-labotur-azul/20 bg-linear-to-r from-labotur-azul/8 to-labotur-azul/3",
               )}
             >
               <div className="flex flex-col">
@@ -74,17 +80,18 @@ export default function AboutSection() {
           </div>
         </AnimatedSection>
 
-        {/* Destaques */}
-        <AnimatedSection delay={0.15}>
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <AnimatedSection delay={0.15} className="md:col-span-5">
+          <ul className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2">
             {highlights.map((item) => (
               <li
                 key={item.title}
                 className={clsx(
-                  "flex flex-col gap-2 rounded-2xl p-5",
-                  "border border-neutral-200 bg-neutral-100",
+                  "group flex flex-col gap-3 rounded-2xl p-5",
+                  "border border-neutral-200/90 bg-white",
+                  "shadow-[0_8px_22px_rgba(15,23,42,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:border-labotur-azul/30 hover:shadow-[0_14px_30px_rgba(15,23,42,0.10)]",
                 )}
               >
+                <span className="h-1 w-10 rounded-full bg-labotur-laranja/85 transition-all duration-200 group-hover:w-14" />
                 <span className="text-sm font-semibold text-labotur-azul">
                   {item.title}
                 </span>

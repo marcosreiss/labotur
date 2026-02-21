@@ -19,8 +19,8 @@
 }
 
 body {
-  background: #ffffff;
+  background: radial-gradient(circle at top, #eff8ff 0%, #ffffff 40%);
   color: var(--neutral-900);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
 }

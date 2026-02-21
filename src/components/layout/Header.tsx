@@ -3,6 +3,7 @@
 
 import clsx from "clsx"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 import { useState } from "react"
 
 const navLinks = [
@@ -25,32 +26,43 @@ export default function Header() {
     <header
       className={clsx(
         "fixed left-0 right-0 top-0 z-50",
-        "border-b border-neutral-200 bg-white/90 backdrop-blur-sm",
+        "bg-white/75 backdrop-blur-xl",
       )}
     >
       <div
         className={clsx(
-          "mx-auto max-w-6xl px-6",
-          "flex h-16 items-center justify-between",
+          "mx-auto mt-3 max-w-6xl px-4 sm:px-6",
+          "h-16 rounded-2xl border border-neutral-200/80 bg-white/95 shadow-[0_10px_30px_rgba(17,24,39,0.07)]",
+          "flex items-center justify-between",
         )}
       >
         <button
           type="button"
           onClick={() => scrollTo("#inicio")}
-          className="text-xl font-bold text-labotur-azul"
+          className={clsx(
+            "ml-3 inline-flex items-center rounded-lg",
+            "transition-opacity hover:opacity-90",
+          )}
+          aria-label="Ir para o início"
         >
-          Labotur
+          <Image
+            src="/labotur-logo.png"
+            alt="Labotur"
+            width={124}
+            height={36}
+            priority
+          />
         </button>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <button
               type="button"
               key={link.href}
               onClick={() => scrollTo(link.href)}
               className={clsx(
-                "text-sm font-medium text-neutral-700",
-                "transition-colors duration-200 hover:text-labotur-azul",
+                "rounded-lg px-3 py-2 text-sm font-medium text-neutral-700",
+                "transition-all duration-200 hover:bg-labotur-azul/8 hover:text-labotur-azul",
               )}
             >
               {link.label}
@@ -62,10 +74,10 @@ export default function Header() {
           type="button"
           onClick={() => scrollTo("#contato")}
           className={clsx(
-            "hidden md:inline-flex",
-            "rounded-lg px-4 py-2",
+            "mr-3 hidden md:inline-flex",
+            "rounded-xl px-4 py-2.5",
             "text-sm font-semibold text-white",
-            "bg-labotur-laranja transition-opacity hover:opacity-90",
+            "bg-labotur-laranja shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90",
           )}
         >
           Solicitar orçamento
@@ -75,41 +87,48 @@ export default function Header() {
           type="button"
           aria-label="Menu"
           onClick={() => setOpen(!open)}
-          className="text-neutral-900 md:hidden"
+          className={clsx(
+            "mr-3 rounded-lg p-2 text-neutral-900 md:hidden",
+            "transition-colors hover:bg-neutral-100",
+          )}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <div
-          className={clsx(
-            "flex flex-col gap-4",
-            "border-t border-neutral-200 bg-white",
-            "px-6 pb-6 pt-2 md:hidden",
-          )}
-        >
-          {navLinks.map((link) => (
-            <button
-              type="button"
-              key={link.href}
-              onClick={() => scrollTo(link.href)}
-              className="text-left text-sm font-medium text-neutral-700"
-            >
-              {link.label}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => scrollTo("#contato")}
+        <div className={clsx("mx-auto mt-2 max-w-6xl px-4 sm:px-6 md:hidden")}>
+          <div
             className={clsx(
-              "mt-2 rounded-lg px-4 py-2",
-              "bg-labotur-laranja text-center",
-              "text-sm font-semibold text-white",
+              "flex flex-col gap-2 rounded-2xl border border-neutral-200 bg-white p-3",
+              "shadow-[0_10px_30px_rgba(17,24,39,0.07)]",
             )}
           >
-            Solicitar orçamento
-          </button>
+            {navLinks.map((link) => (
+              <button
+                type="button"
+                key={link.href}
+                onClick={() => scrollTo(link.href)}
+                className={clsx(
+                  "rounded-lg px-3 py-2 text-left text-sm font-medium text-neutral-700",
+                  "transition-colors hover:bg-neutral-100 hover:text-labotur-azul",
+                )}
+              >
+                {link.label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => scrollTo("#contato")}
+              className={clsx(
+                "mt-1 rounded-xl px-4 py-2.5",
+                "bg-labotur-laranja text-center",
+                "text-sm font-semibold text-white",
+              )}
+            >
+              Solicitar orçamento
+            </button>
+          </div>
         </div>
       )}
     </header>

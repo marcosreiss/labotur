@@ -1,7 +1,6 @@
 // src/components/sections/StatsSection.tsx
 "use client"
 
-import clsx from "clsx"
 import { useEffect, useRef, useState } from "react"
 
 import AnimatedSection from "@/components/ui/AnimatedSection"

@@ -92,8 +92,8 @@ export default function Header() {
           className={clsx(
             "mr-4 hidden md:inline-flex",
             "rounded-xl px-4 py-2.5",
-            "text-sm font-semibold text-labotur-azul",
-            "bg-white shadow-sm",
+            "text-sm font-semibold text-white",
+            "bg-labotur-laranja shadow-sm",
             "transition-all hover:-translate-y-0.5 hover:opacity-90"
           )}
         >
@@ -148,8 +148,8 @@ export default function Header() {
                 onClick={() => scrollTo("#contato")}
                 className={clsx(
                   "mt-1 rounded-xl px-4 py-2.5",
-                  "bg-white text-center",
-                  "text-sm font-semibold text-labotur-azul"
+                  "bg-labotur-laranja text-center",
+                  "text-sm font-semibold text-white"
                 )}
               >
                 Solicitar orçamento

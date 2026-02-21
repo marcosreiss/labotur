@@ -47,7 +47,7 @@ export default function HowItWorksSection() {
           <div className="relative">
             {/* Linha conectora — visível apenas em desktop */}
             <div
-              className="absolute left-[22px] top-[22px] hidden h-[2px] w-[calc(100%-44px)]
+              className="absolute left-5.5 top-5.5 hidden h-0.5 w-[calc(100%-44px)]
               bg-labotur-azul/20 md:block"
               style={{ top: "22px" }}
             />

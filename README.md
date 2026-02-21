@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Labotur - Site Institucional
 
-## Getting Started
+## Proposito
+Este projeto representa a presenca digital institucional da Labotur, Empresa Junior de Turismo da Universidade Federal do Maranhao (UFMA), fundada em 1992 e reconhecida como a primeira EJ de Turismo do Brasil.
 
-First, run the development server:
+O site foi concebido para:
+- apresentar a identidade e credibilidade da Labotur;
+- comunicar servicos e metodologia de trabalho;
+- facilitar contato e solicitacao de orcamento;
+- disponibilizar uma pagina de links oficiais (LinkBio) para canais de entrada e materiais.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Sobre o Projeto
+A aplicacao prioriza clareza de informacao, linguagem institucional e experiencia visual moderna, com foco em:
+- navegacao objetiva por secoes;
+- destaque para servicos e processo de atendimento;
+- narrativa de autoridade (historia, base academica e impacto);
+- consistencia visual entre home e LinkBio.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Arquitetura
+O projeto utiliza arquitetura baseada em componentes, com separacao por responsabilidade:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/app/`
+: rotas e estrutura principal com App Router.
+- `src/app/(home)/page.tsx`
+: composicao da pagina inicial por secoes.
+- `src/app/linkbio/page.tsx`
+: pagina dedicada de links institucionais.
+- `src/components/layout/`
+: elementos globais (Header e Footer).
+- `src/components/sections/`
+: secoes de negocio da home (Hero, Stats, Services, How It Works, About, Contact).
+- `src/components/ui/`
+: componentes reutilizaveis de interface (cards, wrappers e animacoes).
+- `src/styles/globals.css`
+: tokens visuais e estilos globais.
+- `public/`
+: assets de marca (icones e logotipo) e arquivos estaticos.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tecnologias e Base Tecnica
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion (animacoes de entrada, hover e scroll progressivo)
+- Lucide React (iconografia)
+- Biome (padronizacao de codigo e formatacao)
 
-## Learn More
+## Estrutura de Conteudo
+O site esta organizado em duas superficies principais:
+- Home institucional: proposta de valor, servicos, processo, credenciais e contato.
+- LinkBio: atalhos rapidos para formularios, edital e site oficial.
 
-To learn more about Next.js, take a look at the following resources:
+## Identidade e Diretrizes de Design
+O design segue direcao institucional com:
+- hierarquia tipografica clara;
+- contraste adequado para leitura;
+- componentes com acabamento profissional (bordas, sombras sutis e espacamento consistente);
+- microinteracoes em hover/scroll para reforcar fluxo e continuidade;
+- adaptabilidade para desktop e mobile.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Direitos e Creditos
+- Conteudo institucional, marca Labotur e elementos de identificacao pertencem a Labotur/UFMA.
+- Este repositorio representa uma implementacao de interface e estrutura digital da entidade.
+- Desenvolvimento e refinamento visual por **Marcos Reis**: https://marcosreis.vercel.app/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

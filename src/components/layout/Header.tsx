@@ -23,16 +23,11 @@ export default function Header() {
   }
 
   return (
-    <header
-      className={clsx(
-        "fixed left-0 right-0 top-0 z-50",
-        "bg-white/75 backdrop-blur-xl",
-      )}
-    >
+    <header className={clsx("fixed left-0 right-0 top-0 z-50 ")}>
       <div
         className={clsx(
           "mx-auto mt-3 max-w-6xl px-4 sm:px-6",
-          "h-16 rounded-2xl border border-neutral-200/80 bg-white/95 shadow-[0_10px_30px_rgba(17,24,39,0.07)]",
+          "h-16 rounded-2xl border border-labotur-laranja/10 bg-white/95 shadow-[0_10px_30px_rgba(17,24,39,0.07)]",
           "flex items-center justify-between",
         )}
       >
@@ -41,17 +36,22 @@ export default function Header() {
           onClick={() => scrollTo("#inicio")}
           className={clsx(
             "ml-3 inline-flex items-center rounded-lg",
+            "gap-2.5",
             "transition-opacity hover:opacity-90",
           )}
           aria-label="Ir para o início"
         >
           <Image
-            src="/labotur-logo.png"
-            alt="Labotur"
-            width={124}
+            src="/labotur-icon.png"
+            alt="Labotur logo"
+            width={36}
             height={36}
             priority
+            className="size-9 object-contain"
           />
+          <span className="text-xl font-semibold tracking-tight text-labotur-azul">
+            Labotur
+          </span>
         </button>
 
         <nav className="hidden items-center gap-1 md:flex">

@@ -7,14 +7,14 @@ export default function Loading() {
         <div
             className={clsx(
                 "flex min-h-screen items-center justify-center",
-                "bg-white"
+                "bg-linear-to-br from-labotur-azul-escuro to-labotur-azul"
             )}
         >
             <Image
                 src="/labotur-icon.png"
                 alt="Labotur"
-                width={64}
-                height={64}
+                width={96}
+                height={96}
                 priority
                 className="animate-pulse"
             />

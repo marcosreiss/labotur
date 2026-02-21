@@ -7,8 +7,10 @@ import HeroSection from "@/components/sections/HeroSection"
 import HowItWorksSection from "@/components/sections/HowItWorksSection"
 import ServicesSection from "@/components/sections/ServicesSection"
 import StatsSection from "@/components/sections/StatsSection"
+import { setTimeout } from "timers/promises"
 
-export default function Home() {
+export default async function Home() {
+  await setTimeout(3000)
   return (
     <>
       <Header />

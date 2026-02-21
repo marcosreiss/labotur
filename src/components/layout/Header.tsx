@@ -47,7 +47,7 @@ export default function Header() {
           "transition-colors duration-500",
           onHero
             ? "border-white/20 bg-white/10 backdrop-blur-sm"
-            : "border-labotur-azul-escuro bg-labotur-azul"
+            : "border-none bg-labotur-azul"
         )}
       >
         <button

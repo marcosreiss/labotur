@@ -39,15 +39,18 @@ const steps = [
 export default function HowItWorksSection() {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [currentStep, setCurrentStep] = useState(0)
+
   const { scrollYProgress } = useScroll({
     target: timelineRef,
-    offset: ["start 80%", "end 100%"],
+    offset: ["start 30%", "end 90%"],
   })
+
   const progress = useSpring(scrollYProgress, {
     damping: 24,
     mass: 0.3,
     stiffness: 130,
   })
+
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     const nextStep = Math.min(
       steps.length,
@@ -75,21 +78,15 @@ export default function HowItWorksSection() {
 
         <AnimatedSection delay={0.1}>
           <div ref={timelineRef} className="relative">
-            <div className="sticky top-20 z-30 mb-6">
+
+            {/* Barra de progresso sticky */}
+            <div className="sticky top-20 z-30 mb-8">
               <div
                 className={clsx(
                   "rounded-2xl border border-neutral-200/90 bg-white/95 p-3 backdrop-blur",
                   "shadow-[0_10px_25px_rgba(15,23,42,0.08)]",
                 )}
               >
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-labotur-azul">
-                    Andamento das etapas
-                  </span>
-                  <span className="text-xs font-medium text-neutral-600">
-                    Etapa {currentStep} de {steps.length}
-                  </span>
-                </div>
                 <div className="h-2 w-full overflow-hidden rounded-full bg-labotur-azul/15">
                   <motion.div
                     className="h-full rounded-full bg-linear-to-r from-labotur-laranja to-labotur-azul"
@@ -99,14 +96,15 @@ export default function HowItWorksSection() {
               </div>
             </div>
 
-            <ul className="grid grid-cols-1 gap-10 md:grid-cols-4">
+            {/* Steps — coluna única em todos os breakpoints */}
+            <ul className="flex flex-col">
               {steps.map((step, index) => (
                 <li
                   key={step.title}
                   className={clsx(
-                    "relative bg-transparent",
+                    "relative",
                     index < steps.length - 1 &&
-                      "pb-8 after:absolute after:left-[22px] after:top-12 after:h-8 after:w-px after:bg-labotur-azul/20 md:pb-0 md:after:hidden",
+                    "pb-8 after:absolute after:left-5.5 after:top-12 after:h-8 after:w-px after:bg-labotur-azul/20",
                   )}
                 >
                   <StepCard
@@ -120,6 +118,7 @@ export default function HowItWorksSection() {
                 </li>
               ))}
             </ul>
+
           </div>
         </AnimatedSection>
       </SectionWrapper>
